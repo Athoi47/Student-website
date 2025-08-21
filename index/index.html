@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+  :root {
+    --primary: #4361ee;
+    --primary-light: #4895ef;
+    --secondary: #3f37c9;
+    --accent: #f72585;
+    --dark: #1a1a2e;
+    --light: #f8f9fa;
+    --success: #4cc9f0;
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --glass-effect: rgba(255, 255, 255, 0.25);
+    --glass-border: rgba(255, 255, 255, 0.3);
+    --text-dark: #14213d;
+    --text-light: #f8f9fa;
+  }
+
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  body {
+  background: 
+    linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)),
+    url('fatty.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: var(--text-dark);
+  min-height: 100vh;
+  padding: 2rem;
+  line-height: 1.6;
+}
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+  }
+
+  h1 {
+    text-align: center;
+    margin: 2rem 0 3rem;
+    font-size: 3rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  h1::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    border-radius: 5px;
+    transform: scaleX(0.7);
+    transform-origin: center;
+  }
+
+  .form-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 
+      0 8px 32px rgba(31, 38, 135, 0.1),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid var(--glass-border);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .form-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      to bottom right,
+      rgba(255, 255, 255, 0.3) 0%,
+      rgba(255, 255, 255, 0) 60%
+    );
+    transform: rotate(30deg);
+    pointer-events: none;
+  }
+
+  .form-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 
+      0 12px 40px rgba(31, 38, 135, 0.2),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+  }
+
+  h2 {
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
+  }
+
+  h2::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 40px;
+    height: 4px;
+    background: var(--accent);
+    border-radius: 2px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 0.8rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+  }
+
+  .input-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+
+  input[type="text"],
+  input[type="file"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 1rem 1rem 1rem 3rem;
+    border: none;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 
+      inset 0 1px 3px rgba(0, 0, 0, 0.1),
+      0 1px 0 rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    color: var(--text-dark);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  textarea {
+    min-height: 150px;
+    resize: vertical;
+    padding-left: 1rem;
+  }
+
+  input[type="text"]:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+    background: white;
+    box-shadow: 
+      0 0 0 3px rgba(67, 97, 238, 0.2),
+      inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .input-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--primary-light);
+    font-size: 1.2rem;
+  }
+
+  button[type="submit"] {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    box-shadow: 
+      0 4px 15px rgba(67, 97, 238, 0.3),
+      0 1px 3px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  button[type="submit"]::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    transition: 0.5s;
+  }
+
+  button[type="submit"]:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+      0 7px 20px rgba(67, 97, 238, 0.4),
+      0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  button[type="submit"]:hover::before {
+    left: 100%;
+  }
+
+  button[type="submit"]:active {
+    transform: translateY(0);
+  }
+
+  /* File upload customization */
+  .file-upload {
+    position: relative;
+  }
+
+  input[type="file"] {
+    padding: 1rem;
+    border: 2px dashed rgba(67, 97, 238, 0.3);
+    background: rgba(255, 255, 255, 0.6);
+    transition: all 0.3s ease;
+  }
+
+  input[type="file"]:hover {
+    border-color: var(--primary);
+    background: rgba(255, 255, 255, 0.8);
+  }
+
+  input[type="file"]::file-selector-button {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    margin-right: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  input[type="file"]::file-selector-button:hover {
+    background: var(--secondary);
+  }
+
+  /* Floating animation for cards */
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .form-card {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .form-card:nth-child(2) {
+    animation-delay: 0.5s;
+  }
+
+  .form-card:nth-child(3) {
+    animation-delay: 1s;
+  }
+
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .container {
+      grid-template-columns: 1fr;
+    }
+    
+    h1 {
+      font-size: 2.2rem;
+    }
+    
+    .form-card {
+      padding: 1.5rem;
+    }
+  }
+
+  /* Particle background effect */
+  .particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .particle {
+    position: absolute;
+    background: rgba(67, 97, 238, 0.2);
+    border-radius: 50%;
+    animation: float-particle linear infinite;
+  }
+
+  @keyframes float-particle {
+    0% { transform: translateY(0) translateX(0); }
+    100% { transform: translateY(-100vh) translateX(20px); }
+  }
+
+  /* Add some generated particles */
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 20% 30%, rgba(72, 149, 239, 0.1) 0%, transparent 30%),
+                radial-gradient(circle at 80% 70%, rgba(247, 37, 133, 0.1) 0%, transparent 30%);
+    z-index: -1;
+    pointer-events: none;
+  }
+</style>
+
+<script>
+  // Create particle effect
+  document.addEventListener('DOMContentLoaded', function() {
+    const particlesContainer = document.createElement('div');
+    particlesContainer.className = 'particles';
+    document.body.appendChild(particlesContainer);
+    
+    for (let i = 0; i < 30; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      
+      // Random properties
+      const size = Math.random() * 10 + 5;
+      const posX = Math.random() * 100;
+      const posY = Math.random() * 100 + 100; // Start below viewport
+      const duration = Math.random() * 20 + 10;
+      const delay = Math.random() * 10;
+      const opacity = Math.random() * 0.4 + 0.1;
+      
+      particle.style.width = `${size}px`;
+      particle.style.height = `${size}px`;
+      particle.style.left = `${posX}%`;
+      particle.style.top = `${posY}%`;
+      particle.style.animationDuration = `${duration}s`;
+      particle.style.animationDelay = `-${delay}s`;
+      particle.style.opacity = opacity;
+      
+      particlesContainer.appendChild(particle);
+    }
+  });
+</script>
+  <meta charset="UTF-8">
+  <title>Student Feedback Portal</title>
+</head>
+<script>
+  // Your existing particle effect code
+  document.addEventListener('DOMContentLoaded', function() {
+    const particlesContainer = document.createElement('div');
+    particlesContainer.className = 'particles';
+    document.body.appendChild(particlesContainer);
+    
+    for (let i = 0; i < 30; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      
+      // Random properties
+      const size = Math.random() * 10 + 5;
+      const posX = Math.random() * 100;
+      const posY = Math.random() * 100 + 100; // Start below viewport
+      const duration = Math.random() * 20 + 10;
+      const delay = Math.random() * 10;
+      const opacity = Math.random() * 0.4 + 0.1;
+      
+      particle.style.width = `${size}px`;
+      particle.style.height = `${size}px`;
+      particle.style.left = `${posX}%`;
+      particle.style.top = `${posY}%`;
+      particle.style.animationDuration = `${duration}s`;
+      particle.style.animationDelay = `-${delay}s`;
+      particle.style.opacity = opacity;
+      
+      particlesContainer.appendChild(particle);
+    }
+  });
+
+  // JavaScript to handle form submission
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault(); // Prevent form from submitting normally
+      const name = document.getElementById('studentName').value;
+      const teacher = document.getElementById('teacher').value;
+      const feedback = document.getElementById('feedback').value;
+
+      alert(`Thank you, ${name}, for your feedback on ${teacher}!\nYour feedback: ${feedback}`);
+      
+      // Optionally, reset the form
+      form.reset();
+    });
+  });
+</script>
+<body>
+
+  <h1>Student Feedback & Update Portal</h1>
+
+  <!-- Feedback Form -->
+  <form>
+    <h2>Feedback for Teacher</h2>
+
+    <label for="studentName">Your Name:</label>
+    <input type="text" id="studentName" name="studentName">
+
+    <label for="teacher">Select Teacher:</label>
+    <select id="teacher" name="teacher">
+      <option value="mr_smith">Sir Samarendra</option>
+      <option value="ms_doe">Sir Ningmathan</option>
+      <option value="mr_john">Sir Gunamani</option>
+    </select>
+
+    <label for="feedback">Feedback:</label>
+    <textarea id="feedback" name="feedback" rows="5"></textarea>
+
+    <button type="submit">Submit Feedback</button>
+  </form>
+
+  <!-- Upload Image -->
+  <form>
+    <h2>Upload Class Notes</h2>
+
+    <label for="imageTitle">Title:</label>
+    <input type="text" id="imageTitle" name="imageTitle">
+
+    <label for="imageUpload">Choose Image:</label>
+    <input type="file" id="imageUpload" name="imageUpload" accept="image/*">
+
+    <button type="submit">Upload</button>
+  </form>
+
+  <!-- News Posting -->
+  <form>
+    <h2>Post Class News</h2>
+
+    <label for="newsTitle">News Title:</label>
+    <input type="text" id="newsTitle" name="newsTitle">
+
+    <label for="newsContent">News Content:</label>
+    <textarea id="newsContent" name="newsContent" rows="4"></textarea>
+
+    <button type="submit">Post News</button>
+  </form>
+
+</body>
+</html>
